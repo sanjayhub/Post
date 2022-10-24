@@ -8,8 +8,9 @@
 import Foundation
 
 class RemoteLoader<Resource> {
-    let client: HTTPClient
-    let mapper: Mapper
+    private let client: HTTPClient
+    private let mapper: Mapper
+    private let requestURL: URL
     
     enum Error: Swift.Error {
         case connectivity
@@ -19,12 +20,14 @@ class RemoteLoader<Resource> {
     typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
     typealias Result = Swift.Result<Resource, Swift.Error>
     
-    init(client: HTTPClient, mapper: @escaping Mapper) {
+    init(_ requestURL: URL, client: HTTPClient, mapper: @escaping Mapper) {
+        self.requestURL = requestURL
         self.client = client
         self.mapper = mapper
     }
     
-    func execute(_ request: URLRequest, completion: @escaping (Result) -> Void) {
+    func execute(completion: @escaping (Result) -> Void) {
+        let request = URLRequest(url: requestURL)
         client.dispatch(request) { [weak self] result in
             guard let self = self else { return }
             switch result {
