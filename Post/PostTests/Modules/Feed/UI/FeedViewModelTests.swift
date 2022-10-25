@@ -28,14 +28,11 @@ class FeedViewModelTests: XCTestCase {
         let (sut, loader) = makeSUT()
         let feed = makeFeed()
         
-        let exp = expectation(description: "wait for completion")
         sut.onFeedLoad = { received in
             XCTAssertEqual(received, feed)
-            exp.fulfill()
         }
         sut.load()
         loader.loadFeedCompletes(with: .success(feed))
-        wait(for: [exp], timeout: 1.0)
     }
     
     func test_load_does_not_deliver_result_after_instance_has_been_deallocated() {
@@ -48,6 +45,16 @@ class FeedViewModelTests: XCTestCase {
         sut = nil
         loader.loadFeedCompletes(with: .success(feed))
         XCTAssertEqual(output.isEmpty, true)
+    }
+    
+    func test_on_load_notifies_client_of_loading_state_changed() {
+        let feed = makeFeed()
+        let (sut, loader) = makeSUT()
+        var output: [Bool] = []
+        sut.onLoadingStateChange = { output.append($0) }
+        sut.load()
+        loader.loadFeedCompletes(with: .success(feed))
+        XCTAssertEqual(output, [true, false])
     }
 }
 
