@@ -83,10 +83,10 @@ private extension FeedViewModelTests {
     
     private class LoaderSpy {
         
-        private var request: [PassthroughSubject<[Feed], Error>] = []
+        private var requests: [PassthroughSubject<[Feed], Error>] = []
         
         var loadFeedCount: Int {
-            return request.count
+            return requests.count
         }
         
         //        func loadFeed(completion: @escaping FeedLoaderCompletion) {
@@ -96,14 +96,15 @@ private extension FeedViewModelTests {
         func loadFeedCompletes(with result: FeedViewModel.LoaderResult, at index: Int = 0) {
             switch result {
             case let .success(feed):
-                request[index].send(feed)
+                requests[index].send(feed)
+                requests[index].send(completion: .finished)
             default: break
             }
         }
         
         func loadFeedPublisher() -> AnyPublisher<[Feed], Error> {
             let publisher = PassthroughSubject<[Feed], Error>()
-            request.append(publisher)
+            requests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
     }
