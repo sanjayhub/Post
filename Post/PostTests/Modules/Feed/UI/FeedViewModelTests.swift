@@ -93,7 +93,7 @@ private extension FeedViewModelTests {
         //            request.append(completion)
         //        }
         
-        func loadFeedCompletes(with result: FeedLoaderResult, at index: Int = 0) {
+        func loadFeedCompletes(with result: FeedViewModel.LoaderResult, at index: Int = 0) {
             switch result {
             case let .success(feed):
                 request[index].send(feed)

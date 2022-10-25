@@ -7,18 +7,19 @@
 
 import Foundation
 
-typealias FeedLoaderResult = Result<[Feed], Error>
-typealias FeedLoaderCompletion = (FeedLoaderResult) -> Void
-typealias FeedLoader = ((@escaping FeedLoaderCompletion) -> Void)
-
 class FeedViewModel {
-    private let loader: FeedLoader
+    
+    typealias LoaderResult = Result<[Feed], Error>
+    typealias LoaderCompletion = (LoaderResult) -> Void
+    typealias Loader = ((@escaping LoaderCompletion) -> Void)
+
+    private let loader: Loader
     typealias Observer<T> = (T) -> Void
     var onFeedLoad: Observer<[Feed]>?
     var onLoadingStateChange: Observer<Bool>?
     
     
-    init(loader: @escaping FeedLoader) {
+    init(loader: @escaping Loader) {
         self.loader = loader
     }
     
