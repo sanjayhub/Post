@@ -21,6 +21,20 @@ class FeedViewModelTests: XCTestCase {
         sut.load()
         XCTAssertEqual(loader.loadFeedCount, 1)
     }
+    
+    func test_on_load_feed_success_delivers_successfully_loaded_feed() {
+        var (sut, loader) = makeSUT()
+        let feed = makeFeed()
+        
+        let exp = expectation(description: "wait for completion")
+        sut.onFeedLoad = { received in
+            XCTAssertEqual(received, feed)
+            exp.fulfill()
+        }
+        sut.load()
+        loader.loadFeedCompletes(with: .success(feed))
+        wait(for: [exp], timeout: 1.0)
+    }
 }
 
 private extension FeedViewModelTests {
@@ -29,6 +43,19 @@ private extension FeedViewModelTests {
         let loader = LoaderSpy()
         let sut = FeedViewModel(loader: loader.loadFeed(completion:))
         return (sut, loader)
+    }
+    
+    func makeFeed(itemCount: Int = 5) -> [Feed] {
+        return (0..<itemCount).map { index in
+            return Feed(id: UUID().uuidString,
+                        imageURL: makeURL("https://image-\(index)"),
+                        likeCount: index,
+                        user: Feed.User(
+                            id: UUID().uuidString,
+                            name: "name\(index)",
+                            imageURL:makeURL("https://user-image-\(index)") )
+            )
+        }
     }
     
     private class LoaderSpy {
@@ -42,5 +69,10 @@ private extension FeedViewModelTests {
         func loadFeed(completion: @escaping FeedLoaderCompletion) {
             request.append(completion)
         }
+        
+        func loadFeedCompletes(with result: FeedLoaderResult, at index: Int = 0) {
+            request[index](result)
+        }
     }
+    
 }
