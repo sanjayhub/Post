@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import Post
 import SwiftUI
 
@@ -40,14 +41,13 @@ class FeedViewModelTests: XCTestCase {
     func test_load_does_not_deliver_result_after_instance_has_been_deallocated() {
         let loader = LoaderSpy()
         let feed = makeFeed()
-        var sut: FeedViewModel? = FeedViewModel(loader: loader.loadFeed(completion:))
+        var sut: FeedViewModel? = FeedViewModel(loadFeedPublisher: loader.loadFeedPublisher)
         var output: [Any] = []
         sut?.onFeedLoad = { output.append($0) }
         sut?.load()
         sut = nil
         loader.loadFeedCompletes(with: .success(feed))
         XCTAssertEqual(output.isEmpty, true)
-        
     }
 }
 
@@ -55,7 +55,7 @@ private extension FeedViewModelTests {
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedViewModel, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = FeedViewModel(loader: loader.loadFeed(completion:))
+        let sut = FeedViewModel(loadFeedPublisher: loader.loadFeedPublisher)
         checkForMemoryLeak(loader,file: file,line: line)
         checkForMemoryLeak(sut,file: file,line: line)
         return (sut, loader)
@@ -76,18 +76,28 @@ private extension FeedViewModelTests {
     
     private class LoaderSpy {
         
-        private var request: [FeedLoaderCompletion] = []
+        private var request: [PassthroughSubject<[Feed], Error>] = []
         
         var loadFeedCount: Int {
             return request.count
         }
         
-        func loadFeed(completion: @escaping FeedLoaderCompletion) {
-            request.append(completion)
-        }
+        //        func loadFeed(completion: @escaping FeedLoaderCompletion) {
+        //            request.append(completion)
+        //        }
         
         func loadFeedCompletes(with result: FeedLoaderResult, at index: Int = 0) {
-            request[index](result)
+            switch result {
+            case let .success(feed):
+                request[index].send(feed)
+            default: break
+            }
+        }
+        
+        func loadFeedPublisher() -> AnyPublisher<[Feed], Error> {
+            let publisher = PassthroughSubject<[Feed], Error>()
+            request.append(publisher)
+            return publisher.eraseToAnyPublisher()
         }
     }
     

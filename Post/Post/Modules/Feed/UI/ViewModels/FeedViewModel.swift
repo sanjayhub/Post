@@ -22,7 +22,7 @@ class FeedViewModel {
     func load() {
         loader { [weak self] result in
             if let feed = try? result.get() {
-                self.onFeedLoad?(feed)
+                self?.onFeedLoad?(feed)
             }
         }
     }
