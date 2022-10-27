@@ -20,3 +20,5 @@ struct Feed: Hashable {
         let imageURL: URL
     }
 }
+
+extension Feed: Identifiable { }
