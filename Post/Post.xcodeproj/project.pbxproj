@@ -34,6 +34,7 @@
 		29D603A428D247FE00F712BF /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D603A328D247FE00F712BF /* URLSessionHTTPClientTests.swift */; };
 		29F51F2528EFD45F0095BC0B /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F51F2428EFD45F0095BC0B /* RemoteLoader.swift */; };
 		29FD578A290A8A8F006F1EB3 /* URLRequest+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */; };
+		29FD578C290A8B14006F1EB3 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD578B290A8B14006F1EB3 /* Endpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		29D603A328D247FE00F712BF /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		29F51F2428EFD45F0095BC0B /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Endpoint.swift"; sourceTree = "<group>"; };
+		29FD578B290A8B14006F1EB3 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				290B25F52908250C00BB8484 /* CombineHelpers.swift */,
 				29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */,
+				29FD578B290A8B14006F1EB3 /* Endpoints.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				29F51F2528EFD45F0095BC0B /* RemoteLoader.swift in Sources */,
 				2962D20028EDB77F00220887 /* FeedMapper.swift in Sources */,
 				29D1854328D04857006FFE4C /* HTTPClient.swift in Sources */,
+				29FD578C290A8B14006F1EB3 /* Endpoints.swift in Sources */,
 				299AD5BD28EAFFA500AAEA6F /* Endpoints.swift in Sources */,
 				296018F929085D33006DBDD6 /* FeedListView.swift in Sources */,
 				2967083128EF1A7200FDAC75 /* FeedViewModel.swift in Sources */,
