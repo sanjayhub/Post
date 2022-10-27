@@ -8,13 +8,35 @@
 import SwiftUI
 
 struct FeedListView: View {
+    
+    @ObservedObject private (set) var viewModel: FeedViewModel
+    @State private var isLoading = false
+    @State private var items: [Feed] = []
+    
     var body: some View {
-        Text("Feed View")
+        ScrollView(.vertical, showsIndicators: false) {
+            if isLoading {
+                Text("is Loading")
+            } else {
+                ForEach(items, id: \.id) { feed in
+                    Text(feed.id)
+                }
+            }
+        }
+        .onAppear(perform: loadFeed)
+        .padding()
     }
 }
 
-struct FeedListView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedListView()
+private extension FeedListView {
+    func loadFeed() {
+        viewModel.onLoadingStateChange = { loadingState in
+            isLoading = loadingState
+        }
+        viewModel.onFeedLoad = { items in
+            self.items = items
+        }
+        viewModel.load()
     }
 }
+

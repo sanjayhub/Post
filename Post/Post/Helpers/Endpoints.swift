@@ -10,6 +10,6 @@ import Foundation
 extension Endpoint {
     static var PAGE_SIZE: Int { 25 }
     static func feed(page: Int = 0, size: Int = PAGE_SIZE) -> Self {
-        self.init(host: "dummy", path: ["data","v1","post"], queryItems: ["limit": "\(size)"])
+        return .init(host: "dummyapi.io", path: ["data", "v1", "post"], queryItems: ["limit": "\(size)"])
     }
 }
