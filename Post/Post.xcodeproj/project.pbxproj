@@ -33,6 +33,7 @@
 		29D603A228D1FEA700F712BF /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D603A128D1FEA700F712BF /* URLProtocolStub.swift */; };
 		29D603A428D247FE00F712BF /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D603A328D247FE00F712BF /* URLSessionHTTPClientTests.swift */; };
 		29F51F2528EFD45F0095BC0B /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F51F2428EFD45F0095BC0B /* RemoteLoader.swift */; };
+		29FD578A290A8A8F006F1EB3 /* URLRequest+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		29D603A128D1FEA700F712BF /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		29D603A328D247FE00F712BF /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		29F51F2428EFD45F0095BC0B /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
+		29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Endpoint.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,8 @@
 		290B25F4290824D600BB8484 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				290B25F52908250C00BB8484 /* CombineHelpers.swift */,
+				29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -200,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				2962D1FD28EDB75500220887 /* Feed */,
-				290B25F52908250C00BB8484 /* CombineHelpers.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29D1850728D013B6006FFE4C /* AppDelegate.swift in Sources */,
+				29FD578A290A8A8F006F1EB3 /* URLRequest+Endpoint.swift in Sources */,
 				296018F629085CCE006DBDD6 /* FeedUIComposer.swift in Sources */,
 				29D1854428D04857006FFE4C /* URLSessionHTTPClient.swift in Sources */,
 				29D1850928D013B6006FFE4C /* SceneDelegate.swift in Sources */,
