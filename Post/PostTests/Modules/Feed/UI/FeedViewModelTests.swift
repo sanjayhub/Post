@@ -20,7 +20,7 @@ class FeedViewModelTests: XCTestCase {
     func test_on_load_dispatches_load_feed_request() {
         let (sut, loader) = makeSUT()
         XCTAssertEqual(loader.loadFeedCount, 0)
-        sut.load()
+        sut.loadFeed()
         XCTAssertEqual(loader.loadFeedCount, 1)
     }
     
@@ -31,7 +31,7 @@ class FeedViewModelTests: XCTestCase {
         sut.onFeedLoad = { received in
             XCTAssertEqual(received, feed)
         }
-        sut.load()
+        sut.loadFeed()
         loader.loadFeedCompletes(with: .success(feed))
     }
     
@@ -41,7 +41,7 @@ class FeedViewModelTests: XCTestCase {
         var sut: FeedViewModel? = FeedViewModel(loadFeedPublisher: loader.loadFeedPublisher)
         var output: [Any] = []
         sut?.onFeedLoad = { output.append($0) }
-        sut?.load()
+        sut?.loadFeed()
         sut = nil
         loader.loadFeedCompletes(with: .success(feed))
         XCTAssertEqual(output.isEmpty, true)
@@ -52,7 +52,7 @@ class FeedViewModelTests: XCTestCase {
         let (sut, loader) = makeSUT()
         var output: [Bool] = []
         sut.onLoadingStateChange = { output.append($0) }
-        sut.load()
+        sut.loadFeed()
         loader.loadFeedCompletes(with: .success(feed))
         XCTAssertEqual(output, [true, false])
     }

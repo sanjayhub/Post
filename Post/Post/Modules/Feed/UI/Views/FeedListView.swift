@@ -24,22 +24,18 @@ struct FeedListView: View {
                     Text(feed.id)
                 }
             }
-           
         }
-        .onAppear(perform: loadFeed)
+        .onAppear(perform: onLoad)
         .padding()
     }
 }
 
 private extension FeedListView {
-    func loadFeed() {
-        viewModel.onLoadingStateChange = { loadingState in
-            isLoading = loadingState
-        }
-        viewModel.onFeedLoad = { items in
-            self.items = items
-        }
-        viewModel.load()
+    func onLoad() {
+        viewModel.onLoadingStateChange = {  isLoading = $0 }
+        viewModel.onFeedLoad = { self.items = $0 }
+        
+        viewModel.loadFeed()
     }
 }
 
