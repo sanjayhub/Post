@@ -12,11 +12,10 @@ struct FeedListView: View {
     @ObservedObject private (set) var viewModel: FeedViewModel
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            renderViewFor(viewModel.state)
-        }
-        .onAppear(perform: viewModel.loadFeed)
-        .padding()
+        
+        renderViewFor(viewModel.state)
+            .onAppear(perform: viewModel.loadFeed)
+            .padding()
     }
 }
 
@@ -30,24 +29,18 @@ private extension FeedListView {
                     .foregroundColor(Color("3dc6a7"))
                 
             case let .loaded(feed):
-                ForEach(feed, id: \.id) { item in
-                    Text(item.id)
+                ScrollView(.vertical, showsIndicators: true) {
+                    LazyVStack(spacing: 0) {
+                        ForEach(feed, id: \.id) { item in
+                            Text(item.id)
+                        }
+                    }
                 }
+                
             default: Text("todo")
             }
         }
     }
 }
-
-        
-//        if viewModel.isLoading {
-//            LoadingView()
-//                .frame(width: 50.0, height: 50.0)
-//                .foregroundColor(Color("3dc6a7"))
-//        } else {
-//            ForEach(viewModel.feed, id: \.id) { feed in
-//                Text(feed.id)
-//            }
-//        }
 
 
