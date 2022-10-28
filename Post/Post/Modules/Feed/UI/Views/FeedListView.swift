@@ -16,12 +16,15 @@ struct FeedListView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             if isLoading {
-                Text("is Loading")
+                LoadingView()
+                    .frame(width: 50.0, height: 50.0)
+                    .foregroundColor(Color("3dc6a7"))
             } else {
                 ForEach(items, id: \.id) { feed in
                     Text(feed.id)
                 }
             }
+           
         }
         .onAppear(perform: loadFeed)
         .padding()

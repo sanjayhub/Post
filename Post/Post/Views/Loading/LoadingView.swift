@@ -13,9 +13,9 @@ struct LoadingView: View {
     
     var body: some View {
         let animation = Animation
-            .easeIn(duration: 1.25)
+            .easeOut(duration: 1.25)
             .repeatForever(autoreverses: false)
-       return Circle()
+        Circle()
             .scaleEffect(scale)
             .opacity(opacity)
             .onAppear {
