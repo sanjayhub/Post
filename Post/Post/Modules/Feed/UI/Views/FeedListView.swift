@@ -32,7 +32,7 @@ struct FeedListView: View {
 
 private extension FeedListView {
     func onLoad() {
-        viewModel.onLoadingStateChange = {  isLoading = $0 }
+        viewModel.onLoadingStateChange = { isLoading = $0 }
         viewModel.onFeedLoad = { self.items = $0 }
         
         viewModel.loadFeed()
