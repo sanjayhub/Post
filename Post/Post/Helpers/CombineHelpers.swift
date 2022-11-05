@@ -20,7 +20,7 @@ extension HTTPClient {
             return Future { completion in
                 task = self.dispatch(request, completion: completion)
             }
-
+            
         }
         .handleEvents(receiveCancel: { task?.cancel() })
         .eraseToAnyPublisher()
@@ -45,7 +45,8 @@ extension ImageDataLoader {
 
 // MARK: - FeedViewModel
 extension FeedViewModel {
-    convenience init(loadFeedPublisher publisher: @escaping () -> AnyPublisher<[Feed], Error> ) {
+    typealias Publisher = AnyPublisher<[Feed], Error>
+    convenience init(loadFeedPublisher publisher: @escaping () -> Publisher ) {
         self.init(loader: { completion in
             publisher().subscribe(
                 Subscribers.Sink(
@@ -53,6 +54,61 @@ extension FeedViewModel {
                     receiveValue: { result in completion(.success(result)) }
                 ))
         })
+    }
+}
+
+// MARK: - AsyncImageViewModel
+extension AsyncImageViewModel {
+    typealias Publisher = AnyPublisher<Data, Error>
+    convenience init(imageURL: URL, loadImagePublisher publisher: @escaping (URL) -> Publisher, imageTransformer: @escaping (Data) -> Image?) {
+        self.init(imageURL: imageURL, loader: { url, completion in
+            
+            var cancellable: AnyCancellable?
+            let task = ImageDataLoaderTaskWrapper(completion)
+            
+            cancellable = publisher(imageURL)
+                .handleEvents(receiveCancel: {})
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        task.complete(with: .failure(error))
+                    }
+                    cancellable?.cancel()
+                    cancellable = nil
+                    task.cancel()
+                } receiveValue: { imageData in
+                    task.complete(with: .success(imageData))
+                }
+            
+            task.onCancel = cancellable?.cancel
+            return task
+        }, imageTransformer: imageTransformer)
+        
+    }
+    
+    
+    private class ImageDataLoaderTaskWrapper: ImageDataLoaderTask {
+        var wrapped: ImageDataLoaderTask?
+        var onCancel: (() -> Void)?
+        
+        private var completion: ((ImageDataLoader.Result) -> Void)?
+        
+        init(_ completion: @escaping (ImageDataLoader.Result) -> Void) {
+            self.completion = completion
+        }
+        
+        func complete(with result: ImageDataLoader.Result) {
+            completion?(result)
+        }
+        
+        func cancel() {
+            preventFurtherCompletions()
+            wrapped?.cancel()
+            onCancel?()
+        }
+        
+        func preventFurtherCompletions() {
+            completion = nil
+        }
     }
 }
 
