@@ -8,13 +8,34 @@
 import SwiftUI
 
 struct AsyncImageView: View {
+    typealias ViewModel = AsyncImageViewModel<UIImage>
+    
+    @ObservedObject private var viewModel: ViewModel
+    private var canRetry: Bool
+    
+    init(viewModel: ViewModel, canRetry: Bool = true) {
+        self.viewModel = viewModel
+        self.canRetry = canRetry
+    }
+    
     var body: some View {
-        Color(.tertiaryLabel)
+        Group {
+            switch viewModel.state {
+            case .loading:
+                Color(.tertiaryLabel)
+                    .onAppear(perform: viewModel.loadImage)
+            case let .loaded(image):
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            case .error where canRetry:
+                Text("oops.retry again")
+            default:
+                EmptyView()
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .onDisappear(perform: viewModel.cancel)
     }
 }
 
-struct AsyncImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        AsyncImageView()
-    }
-}
