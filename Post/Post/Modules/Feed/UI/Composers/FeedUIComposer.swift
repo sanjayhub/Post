@@ -9,7 +9,10 @@ import SwiftUI
 import Combine
 
 enum FeedUIComposer {
-    static func compose(loader: @escaping () -> AnyPublisher<[Feed], Error>) -> UIHostingController<FeedListView> {
+    typealias Loader = () -> AnyPublisher<[Feed], Error>
+    typealias ImageLoader = (_ url: URL) -> AnyPublisher<Data, Error>
+    
+    static func compose(loader: @escaping Loader, imageLoader: @escaping ImageLoader) -> UIHostingController<FeedListView> {
         let viewModel = FeedViewModel(loadFeedPublisher: loader)
         let rootView = FeedListView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: rootView)
