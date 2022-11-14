@@ -12,9 +12,10 @@ enum FeedUIComposer {
     typealias Loader = () -> AnyPublisher<[Feed], Error>
     typealias ImageLoader = (_ url: URL) -> AnyPublisher<Data, Error>
     
-    static func compose(loader: @escaping Loader, imageLoader: @escaping ImageLoader) -> UIHostingController<FeedListView> {
+    static func compose(loader: @escaping Loader, imageLoader: @escaping ImageLoader) -> UIViewController {
         let viewModel = FeedViewModel(loadFeedPublisher: loader)
         let rootView = FeedListView(viewModel: viewModel)
+            .environmentObject(ImageLoaderProvider(imageLoader))
         let viewController = UIHostingController(rootView: rootView)
         return viewController
     }

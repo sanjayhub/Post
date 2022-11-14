@@ -11,6 +11,7 @@
 		2914C234290A9582005193BA /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C233290A9582005193BA /* UIViewController+Snapshot.swift */; };
 		2914C236290A95AB005193BA /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C235290A95AB005193BA /* XCTestCase+Snapshot.swift */; };
 		2914C23A290ACE46005193BA /* FeedSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C239290ACE46005193BA /* FeedSnapshotTests.swift */; };
+		291DAB0E2922188C00E85E8F /* ImageLoaderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DAB0D2922188C00E85E8F /* ImageLoaderProvider.swift */; };
 		291DE8522917EBD1002122FD /* ImageDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DE8512917EBD1002122FD /* ImageDataMapper.swift */; };
 		292FE10028D740FA00AC220C /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292FE0FF28D740FA00AC220C /* XCTestCase+MemoryLeakTracking.swift */; };
 		294673D528F47A2D00C074D2 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294673D428F47A2D00C074D2 /* RemoteLoaderTests.swift */; };
@@ -64,6 +65,7 @@
 		2914C233290A9582005193BA /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		2914C235290A95AB005193BA /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		2914C239290ACE46005193BA /* FeedSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSnapshotTests.swift; sourceTree = "<group>"; };
+		291DAB0D2922188C00E85E8F /* ImageLoaderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderProvider.swift; sourceTree = "<group>"; };
 		291DE8512917EBD1002122FD /* ImageDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataMapper.swift; sourceTree = "<group>"; };
 		292FE0FF28D740FA00AC220C /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		294673D428F47A2D00C074D2 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				290B25F52908250C00BB8484 /* CombineHelpers.swift */,
 				29FD5789290A8A8F006F1EB3 /* URLRequest+Endpoint.swift */,
 				29FD578B290A8B14006F1EB3 /* Endpoints.swift */,
+				291DAB0D2922188C00E85E8F /* ImageLoaderProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				2962D20028EDB77F00220887 /* FeedMapper.swift in Sources */,
 				29909ACA29162FC100850637 /* ImageLoader.swift in Sources */,
 				29D1854328D04857006FFE4C /* HTTPClient.swift in Sources */,
+				291DAB0E2922188C00E85E8F /* ImageLoaderProvider.swift in Sources */,
 				29FD578C290A8B14006F1EB3 /* Endpoints.swift in Sources */,
 				299AD5BD28EAFFA500AAEA6F /* Endpoint.swift in Sources */,
 				296018F929085D33006DBDD6 /* FeedListView.swift in Sources */,
