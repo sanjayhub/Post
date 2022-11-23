@@ -9,18 +9,17 @@ import SwiftUI
 
 struct FeedListView: View {
     
-    @ObservedObject private (set) var viewModel: FeedViewModel
+    @ObservedObject private var viewModel: FeedViewModel
+    @EnvironmentObject var imageProvider: ImageLoaderProvider
+    
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         
-        renderViewFor(viewModel.state)
-    }
-}
-
-private extension FeedListView {
-    func renderViewFor(_ state: ViewState<[Feed]>) -> some View {
-        return Group {
-            switch state {
+        Group {
+            switch viewModel.state {
             case .loading:
                 LoadingView()
                     .frame(width: 50.0, height: 50.0)
@@ -31,17 +30,20 @@ private extension FeedListView {
                 ScrollView(.vertical, showsIndicators: true) {
                     LazyVStack(spacing: 0) {
                         ForEach(feed, id: \.id) { item in
-                            AsyncImageView()
-                                .frame(height: 400)
-                                .shimmer()
+                            
+                            AsyncImageView(
+                                viewModel: .init(
+                                    imageURL: item.imageURL,
+                                    loadImagePublisher: imageProvider.make(),
+                                    imageTransformer: UIImage.init
+                                )
+                            ).frame(height: 400)
+                            
                         }
                     }
                 }
-                
-            default: Text("todo")
+            default: EmptyView()
             }
         }
     }
 }
-
-
