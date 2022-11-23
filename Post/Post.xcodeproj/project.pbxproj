@@ -28,6 +28,7 @@
 		2967083328EF1A8800FDAC75 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967083228EF1A8800FDAC75 /* FeedViewModelTests.swift */; };
 		2967083528EF357700FDAC75 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967083428EF357700FDAC75 /* HTTPClientSpy.swift */; };
 		29909ACA29162FC100850637 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29909AC929162FC100850637 /* ImageLoader.swift */; };
+		2993E9C6292E575C00F14B5B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993E9C5292E575C00F14B5B /* AvatarView.swift */; };
 		299AD5BD28EAFFA500AAEA6F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5BC28EAFFA500AAEA6F /* Endpoint.swift */; };
 		299AD5BF28EB00DF00AAEA6F /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5BE28EB00DF00AAEA6F /* EndpointTests.swift */; };
 		299AD5C328EB352100AAEA6F /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5C228EB352100AAEA6F /* Feed.swift */; };
@@ -82,6 +83,7 @@
 		2967083228EF1A8800FDAC75 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		2967083428EF357700FDAC75 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		29909AC929162FC100850637 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		2993E9C5292E575C00F14B5B /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		299AD5BC28EAFFA500AAEA6F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		299AD5BE28EB00DF00AAEA6F /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		299AD5C228EB352100AAEA6F /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -295,6 +297,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		2993E9C4292E575000F14B5B /* AvatarView */ = {
+			isa = PBXGroup;
+			children = (
+				2993E9C5292E575C00F14B5B /* AvatarView.swift */,
+			);
+			path = AvatarView;
+			sourceTree = "<group>";
+		};
 		299AD5C028EB047300AAEA6F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +459,7 @@
 		29DB8D772913F928007B7D10 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2993E9C4292E575000F14B5B /* AvatarView */,
 				29DB8D782913F92F007B7D10 /* AsyncImage */,
 			);
 			path = Views;
@@ -576,6 +587,7 @@
 				291DE8522917EBD1002122FD /* ImageDataMapper.swift in Sources */,
 				29F51F2528EFD45F0095BC0B /* RemoteLoader.swift in Sources */,
 				294C5DDB290BB1A2003B3B8C /* LoadingView.swift in Sources */,
+				2993E9C6292E575C00F14B5B /* AvatarView.swift in Sources */,
 				294C5DDF290BB464003B3B8C /* Color+Hex.swift in Sources */,
 				2962D20028EDB77F00220887 /* FeedMapper.swift in Sources */,
 				29909ACA29162FC100850637 /* ImageLoader.swift in Sources */,
