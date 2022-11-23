@@ -23,18 +23,23 @@ struct AsyncImageView: View {
             switch viewModel.state {
             case .loading:
                 Color(.tertiaryLabel)
+                    .shimmer()
                     .onAppear(perform: viewModel.loadImage)
             case let .loaded(image):
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                Color.clear
+                    .overlay(
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                    )
+                    .clipped()
+                
             case .error where canRetry:
                 Text("oops.retry again")
             default:
                 EmptyView()
             }
         }
-        .frame(maxWidth: .infinity)
         .onDisappear(perform: viewModel.cancel)
     }
 }
