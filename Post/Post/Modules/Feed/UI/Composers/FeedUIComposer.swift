@@ -14,7 +14,7 @@ enum FeedUIComposer {
     
     static func compose(loader: @escaping Loader, imageLoader: @escaping ImageLoader) -> UIViewController {
         let viewModel = FeedViewModel(loadFeedPublisher: loader)
-        let rootView = FeedListView(viewModel: viewModel)
+        let rootView = FeedView(viewModel: viewModel)
             .environmentObject(ImageLoaderProvider(imageLoader))
         let viewController = UIHostingController(rootView: rootView)
         return viewController

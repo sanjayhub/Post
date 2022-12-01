@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedListView: View {
+struct FeedView: View {
     
     @ObservedObject private var viewModel: FeedViewModel
     
@@ -26,15 +26,8 @@ struct FeedListView: View {
                     .onAppear(perform: viewModel.loadFeed)
                 
             case let .loaded(feed):
-                ScrollView(.vertical, showsIndicators: true) {
-                    LazyVStack(spacing: 0) {
-                        ForEach(feed, id: \.id) { item in
-                          FeedCard(item: item)
-                        }
-                    }
-                    .background(
-                        Color(.systemBackground)
-                    )
+                ListView(items: feed) { item in
+                    FeedCard(item: item)
                 }
             default: EmptyView()
             }
