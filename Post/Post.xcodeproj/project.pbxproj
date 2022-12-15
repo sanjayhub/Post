@@ -34,6 +34,7 @@
 		299AD5BD28EAFFA500AAEA6F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5BC28EAFFA500AAEA6F /* Endpoint.swift */; };
 		299AD5BF28EB00DF00AAEA6F /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5BE28EB00DF00AAEA6F /* EndpointTests.swift */; };
 		299AD5C328EB352100AAEA6F /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD5C228EB352100AAEA6F /* Feed.swift */; };
+		29B627B5294B937B00787B50 /* FeedCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B627B4294B937B00787B50 /* FeedCardFooterView.swift */; };
 		29C768C5290E8FF800951EAC /* AsyncImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C768C4290E8FF800951EAC /* AsyncImageViewModel.swift */; };
 		29C768C9290EE8B000951EAC /* AsyncImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C768C8290EE8B000951EAC /* AsyncImageViewModelTests.swift */; };
 		29D1850728D013B6006FFE4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1850628D013B6006FFE4C /* AppDelegate.swift */; };
@@ -91,6 +92,7 @@
 		299AD5BC28EAFFA500AAEA6F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		299AD5BE28EB00DF00AAEA6F /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		299AD5C228EB352100AAEA6F /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		29B627B4294B937B00787B50 /* FeedCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCardFooterView.swift; sourceTree = "<group>"; };
 		29C768C4290E8FF800951EAC /* AsyncImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageViewModel.swift; sourceTree = "<group>"; };
 		29C768C8290EE8B000951EAC /* AsyncImageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageViewModelTests.swift; sourceTree = "<group>"; };
 		29D1850328D013B6006FFE4C /* Post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Post.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 			children = (
 				296018F829085D33006DBDD6 /* FeedView.swift */,
 				29530F7B2938A83900AFCBBC /* FeedCard.swift */,
+				29B627B4294B937B00787B50 /* FeedCardFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				29DB8D7A2913F93F007B7D10 /* AsyncImageView.swift in Sources */,
 				296018F629085CCE006DBDD6 /* FeedUIComposer.swift in Sources */,
 				294C5DE3290C01BC003B3B8C /* Shimmer+ViewModifier.swift in Sources */,
+				29B627B5294B937B00787B50 /* FeedCardFooterView.swift in Sources */,
 				29D1854428D04857006FFE4C /* URLSessionHTTPClient.swift in Sources */,
 				29D1850928D013B6006FFE4C /* SceneDelegate.swift in Sources */,
 				299AD5C328EB352100AAEA6F /* Feed.swift in Sources */,
