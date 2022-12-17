@@ -151,6 +151,7 @@
 		2914C237290ACE29005193BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2914C239290ACE46005193BA /* FeedSnapshotTests.swift */,
 				2914C238290ACE30005193BA /* FeedList */,
 			);
 			path = Views;
@@ -159,7 +160,6 @@
 		2914C238290ACE30005193BA /* FeedList */ = {
 			isa = PBXGroup;
 			children = (
-				2914C239290ACE46005193BA /* FeedSnapshotTests.swift */,
 			);
 			path = FeedList;
 			sourceTree = "<group>";
