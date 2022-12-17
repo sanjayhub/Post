@@ -25,6 +25,18 @@ class FeedSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_CONTENT_dark")
         executeRunLoopToCleanUpReferences()
     }
+    
+    func test_feed_with_no_content() {
+        let content = feedWithNoContent
+        let viewModel = FeedViewModel(loader: { $0(.success(content)) })
+        let sut = makeSUT(viewModel: viewModel)
+        sut.view.enforceLayoutCircle()
+        viewModel.loadFeed()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_NO_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_NO_CONTENT_dark")
+        executeRunLoopToCleanUpReferences()
+    }
 }
 
 private extension FeedSnapshotTests {
@@ -60,6 +72,10 @@ private extension FeedSnapshotTests {
                 )
             )
         ]
+    }
+    
+    var feedWithNoContent: [Feed] {
+        []
     }
     
     func makeImageLoader(_ url: URL) -> AnyPublisher<Data, Error> {
