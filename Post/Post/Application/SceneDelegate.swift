@@ -20,7 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         URLSessionHTTPClient(session: .init(configuration: .ephemeral))
     }()
     
-    private lazy var navController = UINavigationController(rootViewController: makeScene())
+    private lazy var navController: UINavigationController = {
+        let controller =  UINavigationController(rootViewController: makeScene())
+        controller.navigationBar.isHidden = true
+        return controller
+    }()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
