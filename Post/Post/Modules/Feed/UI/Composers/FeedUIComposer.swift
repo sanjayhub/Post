@@ -17,6 +17,7 @@ enum FeedUIComposer {
         let rootView = FeedView(viewModel: viewModel)
             .environmentObject(ImageLoaderProvider(imageLoader))
         let viewController = UIHostingController(rootView: rootView)
+        viewController.navigationItem.title = "Your Post"
         return viewController
     }
 }
