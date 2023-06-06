@@ -7,8 +7,10 @@
 
 import Foundation
 
-enum ViewState<T: Equatable>: Equatable {
+enum ViewState<T> {
     case loading
     case loaded(T)
     case error(message: String?)
 }
+
+extension ViewState: Equatable where T: Equatable {}

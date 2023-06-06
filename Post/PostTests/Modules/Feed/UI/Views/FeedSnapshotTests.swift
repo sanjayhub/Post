@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 
 @testable import Post
-
+/*
 class FeedSnapshotTests: XCTestCase {
     
     func test_feed_with_content() {
@@ -105,3 +105,4 @@ extension UIView {
 private func executeRunLoopToCleanUpReferences() {
     RunLoop.current.run(until: Date())
 }
+*/

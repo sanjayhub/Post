@@ -11,8 +11,11 @@ struct FeedView: View {
     
     @ObservedObject private var viewModel: FeedViewModel
     
-    init(viewModel: FeedViewModel) {
+    private let feedCard: (Feed) -> FeedCard
+    
+    init(viewModel: FeedViewModel, feedCard: @escaping (Feed) -> FeedCard) {
         self.viewModel = viewModel
+        self.feedCard = feedCard
     }
     
     var body: some View {
@@ -27,7 +30,7 @@ struct FeedView: View {
                 
             case let .loaded(feed) where !feed.isEmpty:
                 ListView(items: feed) { item in
-                    FeedCard(item: item)
+                    feedCard(item)
                 }
                 
             case .loaded:

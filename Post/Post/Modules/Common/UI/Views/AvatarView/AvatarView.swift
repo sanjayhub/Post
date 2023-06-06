@@ -9,28 +9,20 @@ import SwiftUI
 
 struct AvatarView: View {
     
-    @EnvironmentObject var imageProvider: ImageLoaderProvider
-    
     private let imageURL: URL
+    private let asynImageView: () -> AsyncImageView
     
-    init(imageURL: URL) {
+    init(imageURL: URL, asynImageView: @escaping () -> AsyncImageView) {
         self.imageURL = imageURL
+        self.asynImageView = asynImageView
     }
     
     var body: some View {
-        AsyncImageView(viewModel:
-                .init(imageURL: imageURL,
-                      loadImagePublisher: imageProvider.make(),
-                      imageTransformer: UIImage.init
-                     ),
-                       canRetry: false
-        )
-        .clipShape(Circle())
-        .overlay(
-            Circle().stroke(
-                Color(.secondarySystemBackground), lineWidth: 1)
+        asynImageView()
+            .clipShape(Circle())
+            .overlay(
+                Circle().stroke(
+                    Color(.secondarySystemBackground), lineWidth: 1)
             )
-        
     }
 }
-

@@ -8,30 +8,30 @@
 import SwiftUI
 
 struct FeedCard: View {
-    
-    @EnvironmentObject private var imageProvider: ImageLoaderProvider
+
     private let item: Feed
+    private let avatarView: (Feed) -> AvatarView
+    private let asyncImageView: (Feed) -> AsyncImageView
     
-    init(item: Feed) {
+    init(item: Feed,
+         avatarView: @escaping (Feed) -> AvatarView,
+         asyncImageView: @escaping (Feed) -> AsyncImageView) {
         self.item = item
+        self.avatarView = avatarView
+        self.asyncImageView = asyncImageView
     }
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            AvatarView(imageURL: item.user.imageURL)
+            avatarView(item)
                 .frame(width: 48, height: 48)
                 .padding(.leading)
                 .padding(.bottom)
                 .zIndex(1)
             
             VStack(spacing: 0) {
-                AsyncImageView(
-                    viewModel: .init(
-                        imageURL: item.imageURL,
-                        loadImagePublisher: imageProvider.make(),
-                        imageTransformer: UIImage.init
-                    )
-                ).frame(height: 500)
+                asyncImageView(item)
+                    .frame(height: 500)
                 
                 FeedCardFooterView(name: item.user.name, likes: item.likeCount)
                     .background(Color(.secondarySystemBackground))
